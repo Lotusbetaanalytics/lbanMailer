@@ -38,9 +38,9 @@ exports.cehRegistration = asyncHandler(async (req, res, next) => {
 
   try {
     await sendEmail({
-      email: "obafemi@lotusbetaanalytics.com",
+      email: "iyaki@lotusbetaanalytics.com",
       subject: "CEH",
-      cc: "obafemi@lotusbetaanalytics.com",
+      cc: "ayomide@lotusbetaanalytics.com",
       message,
     });
     const ceh = await Ceh.create(req.body);
