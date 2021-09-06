@@ -17,6 +17,7 @@ connectDB();
 
 // Routes Files
 const contact = require("./routes/contact");
+const enroll = require("./routes/enrollment");
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.use(cors());
 //Mount Routers
 
 app.use("/api/v1/contact", contact);
+app.use("/api/v1/enroll", enroll);
 
 app.use(errorHandler);
 
