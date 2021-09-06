@@ -8,6 +8,7 @@ const hpp = require("hpp");
 const cors = require("cors");
 const errorHandler = require("./middleware/error");
 const connectDB = require("./config/db");
+const morgan = require('morgan');
 
 //load env vars
 dotenv.config({ path: "./config/config.env" });
@@ -18,11 +19,15 @@ connectDB();
 // Routes Files
 const contact = require("./routes/contact");
 const enroll = require("./routes/enrollment");
+const needhand = require("./routes/needhand");
 
 const app = express();
 
 //Boy Parser
 app.use(express.json());
+
+// debugging
+app.use(morgan('dev'));
 
 //Set static folder
 app.use(express.static(path.join(__dirname, "public")));
@@ -46,7 +51,7 @@ app.use(cors());
 
 app.use("/api/v1/contact", contact);
 app.use("/api/v1/enroll", enroll);
-
+app.use("/api/v1/needhand", needhand);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 8000;
