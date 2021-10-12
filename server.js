@@ -8,7 +8,7 @@ const hpp = require("hpp");
 const cors = require("cors");
 const errorHandler = require("./middleware/error");
 const connectDB = require("./config/db");
-const morgan = require('morgan');
+const morgan = require("morgan");
 
 //load env vars
 dotenv.config({ path: "./config/config.env" });
@@ -27,7 +27,7 @@ const app = express();
 app.use(express.json());
 
 // debugging
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 
 //Set static folder
 app.use(express.static(path.join(__dirname, "public")));

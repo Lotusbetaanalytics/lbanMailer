@@ -1,7 +1,7 @@
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
 const Contact = require("../models/Contact");
-const NeedHand = require('../models/NeedHand');
+const NeedHand = require("../models/NeedHand");
 const Ceh = require("../models/Ceh");
 const sendEmail = require("../utils/sendEmail");
 
@@ -54,7 +54,6 @@ exports.cehRegistration = asyncHandler(async (req, res, next) => {
   }
 });
 
-
 exports.createNeedHandForm = asyncHandler(async (req, res, next) => {
   const message = `Dear Team, ${req.body.name} just filled the Need-a-hand form, \n\n Name: ${req.body.name}
   \n\n Email: ${req.body.email}\n\n Subject: ${req.body.subject}\n\n Message: ${req.body.message}`;
@@ -64,12 +63,31 @@ exports.createNeedHandForm = asyncHandler(async (req, res, next) => {
       email: "iyaki@lotusbetaanalytics.com",
       subject: "Contact Page",
       cc: "ayomide@lotusbetaanalytics.com",
-      message: message
+      message: message,
     });
     const needHand = await NeedHand.create(req.body);
     res.status(200).json({
       success: true,
-      message: "Message sent successfully!"
+      message: "Message sent successfully!",
+    });
+  } catch (err) {
+    console.log(err);
+    return next(new ErrorResponse("Message could not be sent", 500));
+  }
+});
+
+exports.isv = asyncHandler(async (req, res, next) => {
+  const message = `Dear Team, ${req.body.firstname}, \n\n Name: ${req.body.firstname} ${req.body.lastname}
+  \n\n Email: ${req.body.email}\n\n Business Name: ${req.body.businessName}\n\n Role: ${req.body.role}, Mobile: ${req.body.mobile}`;
+  try {
+    await sendEmail({
+      email: "obafemi@lotusbetaanalytics.com",
+      subject: "ISV Page",
+      message: message,
+    });
+    res.status(200).json({
+      success: true,
+      message: "Message sent successfully!",
     });
   } catch (err) {
     console.log(err);
