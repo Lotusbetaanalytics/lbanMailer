@@ -84,6 +84,7 @@ exports.isv = asyncHandler(async (req, res, next) => {
       email: "isv@lotusbetaanalytics.com",
       subject: "ISV Page",
       message: message,
+      cc: "ayomide@lotusbetaanalytics.com",
     });
     res.status(200).json({
       success: true,
