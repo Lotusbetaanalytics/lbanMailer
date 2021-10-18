@@ -81,7 +81,7 @@ exports.isv = asyncHandler(async (req, res, next) => {
   \n\n Email: ${req.body.email}\n\n Business Name: ${req.body.businessName}\n\n Role: ${req.body.role}, Mobile: ${req.body.mobile}`;
   try {
     await sendEmail({
-      email: "obafemi@lotusbetaanalytics.com",
+      email: "isv@lotusbetaanalytics.com",
       subject: "ISV Page",
       message: message,
       cc: "ayomide@lotusbetaanalytics.com",
